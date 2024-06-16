@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/foodpanda_jdbc_postgre.iml" filepath="$PROJECT_DIR$/foodpanda_jdbc_postgre.iml" />
+      <module fileurl="file://$PROJECT_DIR$/foodpanda_jdbc_postgres.iml" filepath="$PROJECT_DIR$/foodpanda_jdbc_postgres.iml" />
     </modules>
   </component>
 </project>

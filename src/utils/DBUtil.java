@@ -9,7 +9,7 @@ public class DBUtil {
     public static Connection connection;
     public static Connection getConnection() throws DBException {
         try {
-            String url = "jdbc:postgresql://localhost:5433/food_panda_db";
+            String url = "jdbc:postgresql://localhost:5433/foodpanda_db";
             String username = "postgres";
             String password = "221198";
             connection = DriverManager.getConnection(
@@ -21,7 +21,7 @@ public class DBUtil {
             throw new DBException(e);
         }
     }
-    public static synchronized void closeConnection() throws DBException {
+    public static void closeConnection() throws DBException {
         if (connection != null) {
             try {
                 connection.close();

@@ -22,6 +22,12 @@ public class Customer {
         this.createdDate = createdDate;
     }
 
+    public Customer(String name, String email, String password) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -54,11 +60,11 @@ public class Customer {
         this.password = password;
     }
 
-    public Boolean getDeleted() {
+    public Boolean getIsDeleted() {
         return isDeleted;
     }
 
-    public void setDeleted(Boolean deleted) {
+    public void setIsDeleted(Boolean deleted) {
         isDeleted = deleted;
     }
 
@@ -68,5 +74,17 @@ public class Customer {
 
     public void setCreatedDate(Date createdDate) {
         this.createdDate = createdDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", isDeleted=" + isDeleted +
+                ", createdDate=" + createdDate +
+                '}';
     }
 }

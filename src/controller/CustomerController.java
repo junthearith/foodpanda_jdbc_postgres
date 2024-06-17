@@ -41,6 +41,10 @@ public class CustomerController {
                     System.out.println("0. Exit");
                     System.exit(1);
                     break;
+                case "b":
+                    option = "exit";
+                    System.out.println("Back to main menu.");
+                    break;
                 default:
                     System.out.println("Invalid Input!");
             }

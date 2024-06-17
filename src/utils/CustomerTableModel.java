@@ -12,7 +12,7 @@ public class CustomerTableModel {
     public static void renderCustomersToTable(List<ResponseCustomerDto> customersList, int rows, int currentPage, int totalPages, int totalRecords) {
         Table table = new Table(4, BorderStyle.UNICODE_BOX_HEAVY_BORDER, ShownBorders.ALL);
         for (int i = 0; i < 4; i++) {
-            table.setColumnWidth(i, 20, 20);
+            table.setColumnWidth(i, 30, 30);
         }
 
         // header table
@@ -39,7 +39,7 @@ public class CustomerTableModel {
         Table table = new Table(4, BorderStyle.UNICODE_BOX_HEAVY_BORDER);
 
         for (int i = 0; i < 4; i++) {
-            table.setColumnWidth(i, 20, 20);
+            table.setColumnWidth(i, 30, 30);
         }
 
         table.addCell("F). First Page");

@@ -1,7 +1,6 @@
 package view;
 
 import model.dto.ResponseCustomerDto;
-import model.entity.Customer;
 import model.service.CustomerService;
 import model.service.CustomerServiceImp;
 import utils.CustomerTableModel;

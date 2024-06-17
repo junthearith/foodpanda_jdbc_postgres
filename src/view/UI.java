@@ -26,9 +26,9 @@ public class UI {
     private void processOption() throws DBException {
         homeThumbnail();
         while(true) {
-            option();
             String option = "";
             while (!option.equalsIgnoreCase("exit")) {
+                option();
                 System.out.print("Insert option: ");
                 option = sc.nextLine();
                 switch (option) {

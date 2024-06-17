@@ -66,17 +66,69 @@ public class CustomerDaoImp implements CustomerDao {
     }
 
     @Override
-    public int deleteCustomerById(Integer id) {
-        return 0;
+    public int deleteCustomerById(Integer id) throws DBException {
+        String sql = """
+                DELETE FROM "customer" WHERE id = ?
+                """;
+        try(
+                Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                ) {
+            preparedStatement.setInt(1, id);
+            return preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DBException(e.getMessage());
+        }
+//        return 0;
     }
 
     @Override
-    public int updateCustomerById(Integer id) {
-        return 0;
+    public int updateCustomerById(Integer id) throws DBException {
+        String sql = """
+                UPDATE "customer"
+                SET name = ?, email = ?
+                WHERE id = ?
+                """;
+        try(
+                Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                ) {
+            Customer customer = getCustomerById(id);
+            if (customer != null) {
+                return 0;
+            }
+            preparedStatement.setInt(1, id);
+            return preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new DBException(e.getMessage());
+        }
+//        return 0;
     }
 
     @Override
-    public Customer getCustomerById(Integer id) {
-        return null;
+    public Customer getCustomerById(Integer id) throws DBException {
+        String sql = """
+                SELECT * FROM "customer" WHERE id = ?
+                """;
+        try(
+                Connection connection = DBUtil.getConnection();
+                PreparedStatement preparedStatement = connection.prepareStatement(sql);
+                ) {
+            Customer customer = new Customer();
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                customer.setId(resultSet.getInt("id"));
+                customer.setName(resultSet.getString("name"));
+                customer.setEmail(resultSet.getString("email"));
+                customer.setPassword(resultSet.getString("password"));
+                customer.setIsDeleted(resultSet.getBoolean("is_deleted"));
+                customer.setCreatedDate(resultSet.getDate("created_date"));
+            }
+            return customer;
+        } catch (SQLException e) {
+            throw new DBException(e.getMessage());
+        }
+//        return new Customer();
     }
 }

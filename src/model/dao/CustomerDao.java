@@ -8,7 +8,7 @@ import java.util.List;
 public interface CustomerDao {
     int addNewCustomer(Customer customer) throws DBException;
     List<Customer> queryAllCustomers() throws DBException;
-    int deleteCustomerById(Integer id);
-    int updateCustomerById(Integer id);
-    Customer getCustomerById(Integer id);
+    int deleteCustomerById(Integer id) throws DBException;
+    int updateCustomerById(Integer id) throws DBException;
+    Customer getCustomerById(Integer id) throws DBException;
 }

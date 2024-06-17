@@ -1,6 +1,7 @@
 package controller;
 
 import model.dto.CreateCustomerDto;
+import model.dto.ResponseCustomerDto;
 import model.service.CustomerService;
 import model.service.CustomerServiceImp;
 import utils.CustomerTableModel;
@@ -35,11 +36,24 @@ public class CustomerController {
                     RenderDataToTable.getAllCustomersDataTable();
                     break;
                 case "3":
-                    System.out.println("Delete");
+                    System.out.print("Insert id to delete: ");
+                    int id = Integer.parseInt(sc.nextLine());
+                    int rowAffected = customerService.deleteCustomerById(id);
+                    if (rowAffected > 0) {
+                        System.out.println("id " + id + " successfully.");
+                    }
                     break;
-                case "0":
-                    System.out.println("0. Exit");
-                    System.exit(1);
+                case "4":
+                    System.out.print("Insert id to update: ");
+                    int cusId = Integer.parseInt(sc.nextLine());
+                    int rowAffect = customerService.updateCustomerById(cusId);
+                    if (rowAffect > 0) {
+                        System.out.print("Insert name: ");
+
+                    }
+                    break;
+                case "5":
+                    RenderDataToTable.searchCustomerDataTable();
                     break;
                 case "b":
                     option = "exit";

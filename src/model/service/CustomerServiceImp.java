@@ -35,4 +35,26 @@ public class CustomerServiceImp implements CustomerService{
                 .map(mapper::fromCustomerToResponseCustomerDto)
                 .toList();
     }
+
+    @Override
+    public ResponseCustomerDto searchCustomerBuId(Integer id) throws DBException {
+        if (customerDao.getCustomerById(id) == null) {
+            throw new DBException("Customer Not found!");
+        }
+        return mapper.fromCustomerToResponseCustomerDto(customerDao.getCustomerById(id));
+    }
+
+    @Override
+    public int deleteCustomerById(Integer id) throws DBException {
+        int rowAffected = customerDao.deleteCustomerById(id);
+        if (rowAffected == 0) {
+            throw new DBException("Cannot delete customer with id " + id);
+        }
+        return 1;
+    }
+
+    @Override
+    public int updateCustomerById(Integer id) throws DBException {
+        return customerDao.updateCustomerById(id);
+    }
 }

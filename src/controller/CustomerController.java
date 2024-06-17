@@ -3,7 +3,9 @@ package controller;
 import model.dto.CreateCustomerDto;
 import model.service.CustomerService;
 import model.service.CustomerServiceImp;
+import utils.CustomerTableModel;
 import utils.DBException;
+import view.RenderDataToTable;
 import view.UI;
 
 import java.util.Scanner;
@@ -30,7 +32,7 @@ public class CustomerController {
                     ));
                     break;
                 case "2":
-                    System.out.println(customerService.getAllCustomers());
+                    RenderDataToTable.getAllCustomersDataTable();
                     break;
                 case "3":
                     System.out.println("Delete");

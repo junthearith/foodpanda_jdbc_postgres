@@ -1,5 +1,6 @@
 package utils;
 
+import model.dto.ResponseCustomerDto;
 import model.entity.Customer;
 import org.nocrala.tools.texttablefmt.BorderStyle;
 import org.nocrala.tools.texttablefmt.ShownBorders;
@@ -8,9 +9,9 @@ import org.nocrala.tools.texttablefmt.Table;
 import java.util.List;
 
 public class CustomerTableModel {
-    public static void renderCustomersToTable(List<Customer> customersList, int rows, int currentPage, int totalPages, int totalRecords) {
-        Table table = new Table(5, BorderStyle.UNICODE_BOX_HEAVY_BORDER, ShownBorders.ALL);
-        for (int i = 0; i < 5; i++) {
+    public static void renderCustomersToTable(List<ResponseCustomerDto> customersList, int rows, int currentPage, int totalPages, int totalRecords) {
+        Table table = new Table(4, BorderStyle.UNICODE_BOX_HEAVY_BORDER, ShownBorders.ALL);
+        for (int i = 0; i < 4; i++) {
             table.setColumnWidth(i, 20, 20);
         }
 
@@ -22,11 +23,11 @@ public class CustomerTableModel {
 
         // date rows
         for (int i = 0; i < Math.min(customersList.size(), rows); i++) {
-            Customer customer = customersList.get(i);
-            table.addCell(String.valueOf(customer.getId()));
-            table.addCell(customer.getName());
-            table.addCell(customer.getEmail());
-            table.addCell(String.valueOf(customer.getCreatedDate()));
+            ResponseCustomerDto responseCustomerDto = customersList.get(i);
+            table.addCell(String.valueOf(responseCustomerDto.id()));
+            table.addCell(responseCustomerDto.name());
+            table.addCell(responseCustomerDto.email());
+            table.addCell(String.valueOf(responseCustomerDto.createdDate()));
         }
         table.addCell("Page: " + currentPage + "/" + totalPages, 2);
         table.addCell("Total record: " + totalRecords, 3);
@@ -35,9 +36,9 @@ public class CustomerTableModel {
 
     }
     public static void renderPagination() {
-        Table table = new Table(5, BorderStyle.UNICODE_BOX_HEAVY_BORDER);
+        Table table = new Table(4, BorderStyle.UNICODE_BOX_HEAVY_BORDER);
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 4; i++) {
             table.setColumnWidth(i, 20, 20);
         }
 

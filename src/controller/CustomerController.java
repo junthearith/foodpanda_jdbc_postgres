@@ -4,24 +4,21 @@ import model.dto.CreateCustomerDto;
 import model.service.CustomerService;
 import model.service.CustomerServiceImp;
 import utils.DBException;
-import view.View;
+import view.UI;
 
 import java.util.Scanner;
 
 public class CustomerController {
     static Scanner sc = new Scanner(System.in);
     static final CustomerService customerService = new CustomerServiceImp();
-    public static void display() throws DBException {
-        System.out.println("====================================");
-        System.out.println("Food-Panda System");
-        View.menu();
+    public static void processOption() throws DBException {
         String option = "";
         while (!option.equalsIgnoreCase("exit")) {
-            System.out.print("Insert option:");
+            UI.customerServicesMenu();
+            System.out.print("Insert option: ");
             option = sc.nextLine();
             switch (option) {
                 case "1":
-                    System.out.println("Customer");
                     System.out.print("Enter name: ");
                     String name = sc.nextLine();
                     System.out.print("Enter email: ");
@@ -31,15 +28,19 @@ public class CustomerController {
                     customerService.addNewCustomer(new CreateCustomerDto(
                             name, email, password
                     ));
-
                     break;
                 case "2":
-                    System.out.println("Product");
+                    System.out.println(customerService.getAllCustomers());
                     break;
                 case "3":
-                    System.out.println("Order");
+                    System.out.println("Delete");
                     break;
-
+                case "0":
+                    System.out.println("0. Exit");
+                    System.exit(1);
+                    break;
+                default:
+                    System.out.println("Invalid Input!");
             }
         }
 

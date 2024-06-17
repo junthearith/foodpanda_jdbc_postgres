@@ -1,5 +1,6 @@
 package model.service;
 
+import exception.CustomerException;
 import mapper.Mapper;
 import model.dao.CustomerDao;
 import model.dao.CustomerDaoImp;
@@ -25,7 +26,13 @@ public class CustomerServiceImp implements CustomerService{
     }
 
     @Override
-    public List<ResponseCustomerDto> getAllCustomers() {
-        return null;
+    public List<ResponseCustomerDto> getAllCustomers() throws DBException {
+        List<Customer> customerLists = customerDao.queryAllCustomers();
+        if (customerLists.isEmpty()) {
+            throw new DBException("Cannot get customers from Database.");
+        }
+        return customerLists.stream()
+                .map(mapper::fromCustomerToResponseCustomerDto)
+                .toList();
     }
 }

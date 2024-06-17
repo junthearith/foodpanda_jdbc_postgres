@@ -1,5 +1,6 @@
 package model.service;
 
+import exception.CustomerException;
 import model.dao.CustomerDao;
 import model.dto.CreateCustomerDto;
 import model.dto.ResponseCustomerDto;
@@ -9,5 +10,5 @@ import java.util.List;
 
 public interface CustomerService {
     int addNewCustomer(CreateCustomerDto createCustomerDto) throws DBException;
-    List<ResponseCustomerDto> getAllCustomers();
+    List<ResponseCustomerDto> getAllCustomers() throws DBException;
 }

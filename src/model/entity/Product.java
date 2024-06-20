@@ -24,6 +24,12 @@ public class Product {
         this.description = description;
     }
 
+    public Product(String productName, String productCode, String description) {
+        this.productName = productName;
+        this.productCode = productCode;
+        this.description = description;
+    }
+
     public Integer getId() {
         return id;
     }
@@ -48,11 +54,11 @@ public class Product {
         this.productCode = productCode;
     }
 
-    public boolean isDeleted() {
+    public boolean getIsDeleted() {
         return isDeleted;
     }
 
-    public void setDeleted(boolean deleted) {
+    public void setIsDeleted(boolean deleted) {
         isDeleted = deleted;
     }
 

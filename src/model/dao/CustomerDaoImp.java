@@ -95,7 +95,7 @@ public class CustomerDaoImp implements CustomerDao {
                 ) {
             Customer customer = getCustomerById(id);
             if (customer != null) {
-                return 0;
+                System.out.println(customer);
             }
             preparedStatement.setInt(1, id);
             return preparedStatement.executeUpdate();

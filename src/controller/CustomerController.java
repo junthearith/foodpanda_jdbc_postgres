@@ -2,6 +2,7 @@ package controller;
 
 import model.dto.CreateCustomerDto;
 import model.dto.ResponseCustomerDto;
+import model.entity.Customer;
 import model.service.CustomerService;
 import model.service.CustomerServiceImp;
 import utils.CustomerTableModel;
@@ -46,11 +47,7 @@ public class CustomerController {
                 case "4":
                     System.out.print("Insert id to update: ");
                     int cusId = Integer.parseInt(sc.nextLine());
-                    int rowAffect = customerService.updateCustomerById(cusId);
-                    if (rowAffect > 0) {
-                        System.out.print("Insert name: ");
-
-                    }
+                    System.out.println(customerService.updateCustomerById(cusId));
                     break;
                 case "5":
                     RenderDataToTable.searchCustomerDataTable();
@@ -63,6 +60,5 @@ public class CustomerController {
                     System.out.println("Invalid Input!");
             }
         }
-
     }
 }

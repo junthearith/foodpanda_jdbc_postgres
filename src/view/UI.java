@@ -1,6 +1,7 @@
 package view;
 
 import controller.CustomerController;
+import controller.ProductController;
 import model.dto.CreateCustomerDto;
 import utils.DBException;
 
@@ -40,7 +41,7 @@ public class UI {
                         CustomerController.processOption();
                         break;
                     case "2":
-                        System.out.println("Product");
+                        ProductController.processOption();
                         break;
                     case "3":
                         System.out.println("Order");
@@ -55,10 +56,18 @@ public class UI {
         System.out.println("""
                 1. Add new Customer
                 2. List all Customers
-                3. Delete by Id
-                4. Update by Id
-                5. Search by Id
-                B/Back: Back to Main
+                3. Delete customer by Id
+                4. Update customer by Id
+                5. Search customer by Id
+                B/Back: Back to Main Menu
+                """);
+    }
+    public static void productProcessMenu() {
+        System.out.println("""
+                1. Add new Product
+                2. List all Products
+                3. Delete product by Id
+                B/Back: Back to Main Menu
                 """);
     }
     public void userInterface() throws DBException {

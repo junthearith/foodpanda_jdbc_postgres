@@ -1,6 +1,7 @@
 package view;
 
 import controller.CustomerController;
+import controller.OrderController;
 import controller.ProductController;
 import model.dto.CreateCustomerDto;
 import utils.DBException;
@@ -44,7 +45,7 @@ public class UI {
                         ProductController.processOption();
                         break;
                     case "3":
-                        System.out.println("Order");
+                        OrderController.processOption();
                         break;
                     default:
                         System.out.println("Invalid Input!");
@@ -67,6 +68,13 @@ public class UI {
                 1. Add new Product
                 2. List all Products
                 3. Delete product by Id
+                B/Back: Back to Main Menu
+                """);
+    }
+    public static void orderProcessMenu() {
+        System.out.println("""
+                1. Add new Order
+                2. List all orders
                 B/Back: Back to Main Menu
                 """);
     }

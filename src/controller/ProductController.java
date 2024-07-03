@@ -23,18 +23,7 @@ public class ProductController {
             option = sc.nextLine();
             switch (option) {
                 case "1":
-                    System.out.print("Insert product name: ");
-                    String productName = sc.nextLine();
-                    System.out.print("Insert product code: ");
-                    String productCode = sc.nextLine();
-                    System.out.print("Insert product description: ");
-                    String description = sc.nextLine();
-                    int rowAffected = productService.addNewProduct(new CreateProductDto(
-                            productName, productCode, description
-                    ));
-                    if (rowAffected > 0) {
-                        System.out.println("Add new product successfully.");
-                    }
+                    addNewProduct();
                     break;
                 case "2":
                     System.out.println(productService.getAllProducts());
@@ -42,10 +31,10 @@ public class ProductController {
                 case "3":
                     System.out.print("Insert id to delete: ");
                     int id = Integer.parseInt(sc.nextLine());
-//                    int rowAffected = productService.deleteProductById(id);
-//                    if (rowAffected > 0) {
-//                        System.out.println("id " + id + " successfully.");
-//                    }
+                    int rowAffected = productService.deleteProductById(id);
+                    if (rowAffected > 0) {
+                        System.out.println("id " + id + " successfully.");
+                    }
                     break;
                 case "b":
                     option = "exit";
@@ -54,6 +43,20 @@ public class ProductController {
                 default:
                     System.out.println("Invalid Input!");
             }
+        }
+    }
+    private static void addNewProduct() throws DBException {
+        System.out.print("Insert product name: ");
+        String productName = sc.nextLine();
+        System.out.print("Insert product code: ");
+        String productCode = sc.nextLine();
+        System.out.print("Insert product description: ");
+        String description = sc.nextLine();
+        int rowAffected = productService.addNewProduct(new CreateProductDto(
+                productName, productCode, description
+        ));
+        if (rowAffected > 0) {
+            System.out.println("Add new product successfully.");
         }
     }
 }

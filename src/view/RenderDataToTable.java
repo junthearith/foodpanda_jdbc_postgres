@@ -1,10 +1,14 @@
 package view;
 
 import model.dto.ResponseCustomerDto;
+import model.dto.ResponseOrderDto;
 import model.service.CustomerService;
 import model.service.CustomerServiceImp;
+import model.service.OrderService;
+import model.service.OrderServiceImp;
 import utils.CustomerTableModel;
 import utils.DBException;
+import utils.OrderTableModel;
 
 import java.util.Collections;
 import java.util.List;
@@ -12,7 +16,9 @@ import java.util.Scanner;
 
 public class RenderDataToTable {
     static final CustomerService customerService = new CustomerServiceImp();
+    static final OrderService orderService = new OrderServiceImp();
     static List<ResponseCustomerDto> customers;
+    static List<ResponseOrderDto> orders;
     private static int currentPage = 1;
     private static final int rowSize = 4;
     public static void getAllCustomersDataTable() throws DBException {
@@ -117,6 +123,57 @@ public class RenderDataToTable {
                     } catch (NumberFormatException e) {
                         System.out.println("Invalid input!");
                     }
+                }
+            }
+        }
+    }
+    public static void getAllOrdersDataTable() throws DBException {
+        orders = orderService.getAllOrders();
+        if (orders == null) {
+            System.out.println("Unable to get customers data.");
+        }
+//        int currentPage = 1;
+        int totalPages = (int)Math.ceil((double)orders.size() / rowSize);
+        int totalRecords = orders.size();
+        while (true) {
+            int startIndex = (currentPage -1) * rowSize;
+            int endIndex = Math.min(startIndex + rowSize, orders.size());
+            List<ResponseOrderDto> pageOrders = orders.subList(startIndex, endIndex);
+
+            System.out.println();
+            OrderTableModel.renderOrdersToTable(pageOrders, rowSize, currentPage, totalPages, totalRecords);
+            OrderTableModel.renderPagination();
+
+            System.out.print("Enter the option(pagination): ");
+            String pageOption = new Scanner(System.in).nextLine();
+            if (pageOption.equalsIgnoreCase("p")) {
+                if (currentPage > 1) {
+                    currentPage--;
+                } else {
+                    System.out.println("You're already on the first page.");
+                }
+            } else if (pageOption.equalsIgnoreCase("n")){
+                if (currentPage < totalPages) {
+                    currentPage++;
+                } else {
+                    System.out.println("You're already on the last page.");
+                }
+            } else if (pageOption.equalsIgnoreCase("f")) {
+                currentPage = 1;
+            } else if (pageOption.equalsIgnoreCase("l")) {
+                currentPage = totalPages;
+            } else if (pageOption.equalsIgnoreCase("b")) {
+                return;
+            } else {
+                try {
+                    int pageNumber = Integer.parseInt(pageOption);
+                    if (pageNumber >= 1 && pageNumber <= totalPages) {
+                        currentPage = pageNumber;
+                    } else {
+                        System.out.println("Invalid page number. Please enter a number between 1 and " + totalPages);
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid input!");
                 }
             }
         }

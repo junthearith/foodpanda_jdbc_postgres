@@ -1,10 +1,8 @@
 package mapper;
 
-import model.dto.CreateCustomerDto;
-import model.dto.CreateProductDto;
-import model.dto.ResponseCustomerDto;
-import model.dto.ResponseProductDto;
+import model.dto.*;
 import model.entity.Customer;
+import model.entity.Order;
 import model.entity.Product;
 
 public class Mapper {
@@ -49,6 +47,28 @@ public class Mapper {
                 product.getProductCode(),
                 product.getExpiredDate(),
                 product.getDescription()
+        );
+    }
+    public Order fromCreateOrderDtoToOrder(CreateOrderDto createOrderDto) {
+        if (createOrderDto == null) {
+            return null;
+        }
+        return new Order(
+                createOrderDto.order_name(),
+                createOrderDto.order_description(),
+                createOrderDto.customer()
+        );
+    }
+    public ResponseOrderDto fromOrderToResponseOrderDto(Order order) {
+        if (order == null) {
+            return null;
+        }
+        return new ResponseOrderDto(
+                order.getId(),
+                order.getOrderName(),
+                order.getOrderDescription(),
+                order.getCustomer(),
+                order.getOrderedAt()
         );
     }
 }

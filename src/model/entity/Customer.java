@@ -28,6 +28,10 @@ public class Customer {
         this.password = password;
     }
 
+    public Customer(Integer id) {
+        this.id = id;
+    }
+
     public Integer getId() {
         return id;
     }

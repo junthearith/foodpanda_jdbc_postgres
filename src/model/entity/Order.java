@@ -5,20 +5,27 @@ import java.sql.Date;
 public class Order {
     private Integer id;
     private String orderName;
-    private Integer orderDescription;
+    private String orderDescription;
     private Customer customer;
     private Date orderedAt;
 
     public Order() {
     }
 
-    public Order(Integer id, String orderName, Integer orderDescription, Customer customer, Date orderedAt) {
+    public Order(Integer id, String orderName, String orderDescription, Customer customer, Date orderedAt) {
         this.id = id;
         this.orderName = orderName;
         this.orderDescription = orderDescription;
         this.customer = customer;
         this.orderedAt = orderedAt;
     }
+
+    public Order(String orderName, String orderDescription, Customer customer) {
+        this.orderName = orderName;
+        this.orderDescription = orderDescription;
+        this.customer = customer;
+    }
+
 
     public Integer getId() {
         return id;
@@ -36,11 +43,11 @@ public class Order {
         this.orderName = orderName;
     }
 
-    public Integer getOrderDescription() {
+    public String getOrderDescription() {
         return orderDescription;
     }
 
-    public void setOrderDescription(Integer orderDescription) {
+    public void setOrderDescription(String orderDescription) {
         this.orderDescription = orderDescription;
     }
 
